@@ -2,6 +2,9 @@ package avecode.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import javax.annotation.PreDestroy;
 
 public class DbManager implements IDbManager {
 	private Connection con;
@@ -14,7 +17,7 @@ public class DbManager implements IDbManager {
 					try {
 					       Class.forName("org.postgresql.Driver");
 					       con = DriverManager
-					          .getConnection("jdbc:postgresql://localhost:5432/NarvarDB", //local NarvarDB
+					          .getConnection("jdbc:postgresql://localhost:5432/narvardb", //local NarvarDB
 					          "postgres", "postgres");  
 					       con.setAutoCommit(false);
 					       System.out.println("Opened database successfully"); 
@@ -26,5 +29,16 @@ public class DbManager implements IDbManager {
 			}
 		}
 		return con;
+	}
+	
+	@PreDestroy
+	public void delete() {
+		if (null != con) {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

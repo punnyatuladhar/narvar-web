@@ -34,7 +34,6 @@ public class CustomerService {
 	}
 	
 	@GET
-	//@Path("{name}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response get() {
 		List<CustomerRequest> cust = customerMgr.get();
@@ -57,7 +56,7 @@ public class CustomerService {
 	
 	@DELETE
 	@Path("{name}")
-	public Response update(@PathParam("name") String name) {
+	public Response delete(@PathParam("name") String name) {
 		String res = customerMgr.delete(name);
 		if (res.equals("OK")) {
 			return Response.ok().build();
