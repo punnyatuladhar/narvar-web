@@ -1,0 +1,21 @@
+package avecode.services;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.core.Response;
+
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+/**
+ * Written for pwc hp project with interface
+ * @author silver
+ *
+ */
+public class ReportService implements IReportService {
+	@Override
+	public Response signIn(String req) {
+	}
+	
+	@Override
+	public Response getReportPreview(@PathParam("site") String site, @PathParam("workbook") String workBook) {
+	}
+}
